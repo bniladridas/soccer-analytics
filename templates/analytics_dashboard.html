@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Soccer Analytics Dashboard</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="dashboard-container">
+        <header>
+            <h1>⚽ Soccer Analytics Dashboard</h1>
+        </header>
+
+        <section class="player-recommendation">
+            <h2>Player Recommendations</h2>
+            <div class="recommendation-tools">
+                <input type="text" id="playerNameInput" placeholder="Enter Player Name">
+                <button id="recommendPlayerBtn">Find Similar Players</button>
+            </div>
+            <ul id="recommendationsList" class="recommendations-list"></ul>
+        </section>
+
+        <section class="visualization-grid">
+            <div class="chart-container">
+                <h3>Performance Distribution</h3>
+                <canvas id="performanceDistributionChart"></canvas>
+            </div>
+
+            <div class="chart-container">
+                <h3>Team Performance Comparison</h3>
+                <canvas id="teamComparisonChart"></canvas>
+            </div>
+
+            <div class="chart-container">
+                <h3>Position Performance</h3>
+                <canvas id="positionPerformanceChart"></canvas>
+            </div>
+
+            <div class="chart-container">
+                <h3>Feature Importance</h3>
+                <canvas id="featureImportanceChart"></canvas>
+            </div>
+
+            <div class="chart-container">
+                <h3>Player Similarity Network</h3>
+                <canvas id="playerSimilarityNetwork"></canvas>
+            </div>
+        </section>
+
+        <section class="performance-prediction">
+            <h2>Performance Prediction</h2>
+            <div class="prediction-tools">
+                <button id="predictPerformanceBtn">Predict Player Performance</button>
+            </div>
+            <div id="predictionResults"></div>
+        </section>
+    </div>
+
+    <script src="/static/visualization_dashboard.js"></script>
+</body>
+</html>

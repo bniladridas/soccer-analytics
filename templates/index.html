@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FIFA 25 - Premier League Ratings</title>
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        :root {
+            --primary-color: #1a1a1a;
+            --secondary-color: #2c2c2c;
+            --accent-color: #00ff88;
+            --text-color: #ffffff;
+            --card-bg: #2c2c2c;
+            --hover-color: #3c3c3c;
+        }
+
+        /* Team Colors */
+        .Manchester-United {
+            background: linear-gradient(135deg, #DA291C 0%, #000000 100%);
+            --team-accent: #FBE122;
+        }
+
+        .Manchester-City {
+            background: linear-gradient(135deg, #6CABDD 0%, #1C2C5B 100%);
+            --team-accent: #98C5E9;
+        }
+
+        .Liverpool {
+            background: linear-gradient(135deg, #C8102E 0%, #00B2A9 100%);
+            --team-accent: #F6EB61;
+        }
+
+        .Arsenal {
+            background: linear-gradient(135deg, #EF0107 0%, #063672 100%);
+            --team-accent: #9C824A;
+        }
+
+        body {
+            font-family: 'Exo 2', sans-serif;
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+        }
+
+        .app-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .main-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: var(--secondary-color);
+            border-radius: 15px 15px 0 0;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+        }
+
+        .header-content h1 {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 0;
+        }
+
+        .season-badge {
+            background-color: var(--accent-color);
+            color: var(--primary-color);
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+
+        .club-filters {
+            display: flex;
+            gap: 20px;
+        }
+
+        .club-filter {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 25px;
+            background: var(--secondary-color);
+            color: var(--text-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+
+        .club-filter:hover {
+            background: var(--hover-color);
+        }
+
+        .club-filter.active {
+            background: var(--accent-color);
+            color: var(--primary-color);
+        }
+
+        .club-icon {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+        }
+
+        .filter-text {
+            font-size: 14px;
+        }
+
+        .main-content {
+            padding: 20px;
+        }
+
+        /* Player Card Styles */
+        .player-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .player-card {
+            position: relative;
+            border-radius: 15px;
+            padding: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            overflow: hidden;
+            min-height: 380px;
+        }
+
+        .player-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.3);
+            z-index: 1;
+        }
+
+        .player-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .jersey {
+            position: relative;
+            width: 100%;
+            height: 200px;
+            margin-bottom: 15px;
+            z-index: 2;
+        }
+
+        .jersey-number {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 64px;
+            font-weight: bold;
+            color: var(--team-accent);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .player-name {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 10px 0;
+            text-align: center;
+            color: var(--text-color);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            z-index: 2;
+            position: relative;
+        }
+
+        .player-club {
+            font-size: 16px;
+            color: var(--team-accent);
+            margin: 5px 0;
+            text-align: center;
+            z-index: 2;
+            position: relative;
+        }
+
+        .player-rating {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--team-accent);
+            color: var(--primary-color);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+            z-index: 2;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .player-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-top: 15px;
+            z-index: 2;
+            position: relative;
+        }
+
+        .stat {
+            text-align: center;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 5px;
+            border-radius: 5px;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: var(--team-accent);
+        }
+
+        .stat-value {
+            font-size: 18px;
+            font-weight: bold;
+            color: var(--text-color);
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+        }
+
+        .modal-content {
+            position: relative;
+            background: var(--card-bg);
+            margin: 10% auto;
+            padding: 20px;
+            width: 80%;
+            max-width: 600px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .close-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
+            color: var(--text-color);
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+
+        .chart-container {
+            margin-top: 20px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .player-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+            
+            .club-filters {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .club-filter {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <header class="main-header">
+            <div class="header-content">
+                <h1><i class="fas fa-futbol"></i> FIFA 25</h1>
+                <div class="season-badge">
+                    <i class="fas fa-star"></i> 2024/25 SEASON
+                </div>
+            </div>
+            <nav class="club-filters">
+                <button class="club-filter active" data-club="all">
+                    <img src="{{ url_for('static', filename='images/premier-league.png') }}" alt="All Teams">
+                    <span>All Teams</span>
+                </button>
+                <button class="club-filter" data-club="Arsenal">
+                    <img src="{{ url_for('static', filename='images/arsenal.png') }}" alt="Arsenal">
+                    <span>Arsenal</span>
+                </button>
+                <button class="club-filter" data-club="Aston Villa">
+                    <img src="{{ url_for('static', filename='images/aston-villa.png') }}" alt="Aston Villa">
+                    <span>Aston Villa</span>
+                </button>
+                <button class="club-filter" data-club="Bournemouth">
+                    <img src="{{ url_for('static', filename='images/bournemouth.png') }}" alt="Bournemouth">
+                    <span>Bournemouth</span>
+                </button>
+                <button class="club-filter" data-club="Brentford">
+                    <img src="{{ url_for('static', filename='images/brentford.png') }}" alt="Brentford">
+                    <span>Brentford</span>
+                </button>
+                <button class="club-filter" data-club="Brighton">
+                    <img src="{{ url_for('static', filename='images/brighton.png') }}" alt="Brighton">
+                    <span>Brighton</span>
+                </button>
+                <button class="club-filter" data-club="Burnley">
+                    <img src="{{ url_for('static', filename='images/burnley.png') }}" alt="Burnley">
+                    <span>Burnley</span>
+                </button>
+                <button class="club-filter" data-club="Chelsea">
+                    <img src="{{ url_for('static', filename='images/chelsea.png') }}" alt="Chelsea">
+                    <span>Chelsea</span>
+                </button>
+                <button class="club-filter" data-club="Crystal Palace">
+                    <img src="{{ url_for('static', filename='images/crystal-palace.png') }}" alt="Crystal Palace">
+                    <span>Crystal Palace</span>
+                </button>
+                <button class="club-filter" data-club="Everton">
+                    <img src="{{ url_for('static', filename='images/everton.png') }}" alt="Everton">
+                    <span>Everton</span>
+                </button>
+                <button class="club-filter" data-club="Fulham">
+                    <img src="{{ url_for('static', filename='images/fulham.png') }}" alt="Fulham">
+                    <span>Fulham</span>
+                </button>
+                <button class="club-filter" data-club="Liverpool">
+                    <img src="{{ url_for('static', filename='images/liverpool.png') }}" alt="Liverpool">
+                    <span>Liverpool</span>
+                </button>
+                <button class="club-filter" data-club="Luton">
+                    <img src="{{ url_for('static', filename='images/luton.png') }}" alt="Luton">
+                    <span>Luton</span>
+                </button>
+                <button class="club-filter" data-club="Manchester City">
+                    <img src="{{ url_for('static', filename='images/manchester-city.png') }}" alt="Manchester City">
+                    <span>Man City</span>
+                </button>
+                <button class="club-filter" data-club="Manchester United">
+                    <img src="{{ url_for('static', filename='images/manchester-united.png') }}" alt="Manchester United">
+                    <span>Man United</span>
+                </button>
+                <button class="club-filter" data-club="Newcastle">
+                    <img src="{{ url_for('static', filename='images/newcastle.png') }}" alt="Newcastle">
+                    <span>Newcastle</span>
+                </button>
+                <button class="club-filter" data-club="Nottingham Forest">
+                    <img src="{{ url_for('static', filename='images/nottingham-forest.png') }}" alt="Nottingham Forest">
+                    <span>Forest</span>
+                </button>
+                <button class="club-filter" data-club="Sheffield United">
+                    <img src="{{ url_for('static', filename='images/sheffield-united.png') }}" alt="Sheffield United">
+                    <span>Sheffield</span>
+                </button>
+                <button class="club-filter" data-club="Tottenham">
+                    <img src="{{ url_for('static', filename='images/tottenham.png') }}" alt="Tottenham">
+                    <span>Tottenham</span>
+                </button>
+                <button class="club-filter" data-club="West Ham">
+                    <img src="{{ url_for('static', filename='images/west-ham.png') }}" alt="West Ham">
+                    <span>West Ham</span>
+                </button>
+                <button class="club-filter" data-club="Wolves">
+                    <img src="{{ url_for('static', filename='images/wolves.png') }}" alt="Wolves">
+                    <span>Wolves</span>
+                </button>
+            </nav>
+        </header>
+
+        <main class="main-content">
+            <div class="player-grid">
+                <!-- Player cards will be dynamically inserted here -->
+            </div>
+            
+            <!-- Team Details Modal -->
+            <div id="teamModal" class="modal">
+                <div class="team-modal">
+                    <div class="modal-header">
+                        <img id="teamLogo" src="" alt="Team Logo" class="team-logo">
+                        <div class="team-info">
+                            <h2 id="teamName"></h2>
+                            <div class="team-meta">
+                                <span>Rating: <span id="teamRating"></span></span>
+                                <span>Form: <span id="teamForm"></span></span>
+                                <span>Formation: <span id="formation"></span></span>
+                            </div>
+                        </div>
+                        <button class="close-modal">&times;</button>
+                    </div>
+                    
+                    <div class="modal-content">
+                        <div class="team-stats">
+                            <h3>Team Statistics</h3>
+                            <div class="team-stats-grid">
+                                <!-- Stats will be dynamically inserted here -->
+                            </div>
+                        </div>
+                        
+                        <div class="charts-container">
+                            <div class="chart-box">
+                                <h3>Team Performance</h3>
+                                <canvas id="teamStatsRadar"></canvas>
+                            </div>
+                            <div class="chart-box">
+                                <h3>Top Players</h3>
+                                <canvas id="playerPerformance"></canvas>
+                            </div>
+                        </div>
+                        
+                        <div class="squad-section">
+                            <h3>Squad</h3>
+                            <div class="squad-filters">
+                                <button class="squad-filter active" data-role="all">All Players</button>
+                                <button class="squad-filter" data-role="FW">Forwards</button>
+                                <button class="squad-filter" data-role="MF">Midfielders</button>
+                                <button class="squad-filter" data-role="DF">Defenders</button>
+                            </div>
+                            <div class="squad-list">
+                                <!-- Players will be dynamically inserted here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/gsap.min.js"></script>
+        <script src="{{ url_for('static', filename='script.js') }}"></script>
+    </div>
+</body>
+</html>

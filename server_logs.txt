@@ -1,0 +1,59 @@
+2025-01-31 10:57:27,457 - INFO: 🚀 Starting Soccer Analytics Server on 0.0.0.0:5000
+2025-01-31 10:57:27,461 - INFO: 🔄 Automatically regenerated player data
+2025-01-31 10:58:55,051 - INFO: 🚀 Soccer Analytics Server initialized on port 5001
+2025-01-31 10:58:55,051 - INFO: 🚀 Starting Soccer Analytics Server on 0.0.0.0:5001
+2025-01-31 10:58:55,063 - INFO: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5001
+ * Running on http://192.168.0.2:5001
+2025-01-31 10:58:55,063 - INFO: [33mPress CTRL+C to quit[0m
+2025-01-31 10:58:55,063 - INFO:  * Restarting with stat
+2025-01-31 10:58:56,180 - INFO: 🚀 Soccer Analytics Server initialized on port 5001
+2025-01-31 10:58:56,180 - INFO: 🚀 Starting Soccer Analytics Server on 0.0.0.0:5001
+2025-01-31 10:58:56,183 - WARNING:  * Debugger is active!
+2025-01-31 10:58:56,191 - INFO:  * Debugger PIN: 143-311-626
+2025-01-31 10:59:15,220 - INFO: 127.0.0.1 - - [31/Jan/2025 10:59:15] "GET /analytics_dashboard HTTP/1.1" 200 -
+2025-01-31 10:59:15,278 - INFO: 127.0.0.1 - - [31/Jan/2025 10:59:15] "GET /static/style.css HTTP/1.1" 200 -
+2025-01-31 10:59:15,278 - INFO: 127.0.0.1 - - [31/Jan/2025 10:59:15] "GET /static/visualization_dashboard.js HTTP/1.1" 200 -
+2025-01-31 10:59:15,498 - INFO: 127.0.0.1 - - [31/Jan/2025 10:59:15] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-01-31 11:00:52,933 - INFO: 127.0.0.1 - - [31/Jan/2025 11:00:52] "GET /analytics_dashboard HTTP/1.1" 200 -
+2025-01-31 11:00:52,955 - INFO: 127.0.0.1 - - [31/Jan/2025 11:00:52] "[36mGET /static/visualization_dashboard.js HTTP/1.1[0m" 304 -
+2025-01-31 11:00:52,956 - INFO: 127.0.0.1 - - [31/Jan/2025 11:00:52] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-01-31 11:00:53,632 - INFO: 127.0.0.1 - - [31/Jan/2025 11:00:53] "GET /analytics_dashboard HTTP/1.1" 200 -
+2025-01-31 11:00:53,644 - INFO: 127.0.0.1 - - [31/Jan/2025 11:00:53] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-01-31 11:00:53,645 - INFO: 127.0.0.1 - - [31/Jan/2025 11:00:53] "[36mGET /static/visualization_dashboard.js HTTP/1.1[0m" 304 -
+2025-01-31 11:01:55,471 - INFO: 127.0.0.1 - - [31/Jan/2025 11:01:55] "GET / HTTP/1.1" 200 -
+2025-01-31 11:01:55,523 - INFO: 127.0.0.1 - - [31/Jan/2025 11:01:55] "GET /static/images/premier-league.png HTTP/1.1" 200 -
+2025-01-31 11:01:55,527 - INFO: 127.0.0.1 - - [31/Jan/2025 11:01:55] "GET /static/images/bournemouth.png HTTP/1.1" 200 -
+2025-01-31 11:01:55,528 - INFO: 127.0.0.1 - - [31/Jan/2025 11:01:55] "GET /static/images/aston-villa.png HTTP/1.1" 200 -
+2025-01-31 11:01:55,528 - INFO: 127.0.0.1 - - [31/Jan/2025 11:01:55] "GET /static/images/brentford.png HTTP/1.1" 200 -
+2025-01-31 11:01:55,530 - INFO: 127.0.0.1 - - [31/Jan/2025 11:01:55] "GET /static/images/arsenal.png HTTP/1.1" 200 -
+2025-01-31 11:01:55,531 - INFO: 127.0.0.1 - - [31/Jan/2025 11:01:55] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-01-31 11:01:55,533 - INFO: 127.0.0.1 - - [31/Jan/2025 11:01:55] "GET /static/script.js HTTP/1.1" 200 -
+2025-01-31 11:01:55,535 - INFO: 127.0.0.1 - - [31/Jan/2025 11:01:55] "GET /static/images/burnley.png HTTP/1.1" 200 -
+2025-01-31 11:01:55,536 - INFO: 127.0.0.1 - - [31/Jan/2025 11:01:55] "GET /static/images/brighton.png HTTP/1.1" 200 -
+2025-01-31 11:01:55,541 - INFO: 127.0.0.1 - - [31/Jan/2025 11:01:55] "GET /static/images/chelsea.png HTTP/1.1" 200 -
+2025-01-31 11:01:55,543 - INFO: 127.0.0.1 - - [31/Jan/2025 11:01:55] "GET /static/images/everton.png HTTP/1.1" 200 -
+2025-01-31 11:01:55,543 - INFO: 127.0.0.1 - - [31/Jan/2025 11:01:55] "GET /static/images/crystal-palace.png HTTP/1.1" 200 -
+2025-01-31 11:01:55,552 - INFO: 127.0.0.1 - - [31/Jan/2025 11:01:55] "GET /static/images/luton.png HTTP/1.1" 200 -
+2025-01-31 11:01:55,552 - INFO: 127.0.0.1 - - [31/Jan/2025 11:01:55] "GET /static/images/liverpool.png HTTP/1.1" 200 -
+2025-01-31 11:01:55,552 - INFO: 127.0.0.1 - - [31/Jan/2025 11:01:55] "GET /static/images/fulham.png HTTP/1.1" 200 -
+2025-01-31 11:01:55,553 - INFO: 127.0.0.1 - - [31/Jan/2025 11:01:55] "GET /static/images/manchester-city.png HTTP/1.1" 200 -
+2025-01-31 11:01:55,554 - INFO: 127.0.0.1 - - [31/Jan/2025 11:01:55] "GET /static/images/manchester-united.png HTTP/1.1" 200 -
+2025-01-31 11:01:55,556 - INFO: 127.0.0.1 - - [31/Jan/2025 11:01:55] "GET /static/images/wolves.png HTTP/1.1" 200 -
+2025-01-31 11:01:55,559 - INFO: 127.0.0.1 - - [31/Jan/2025 11:01:55] "GET /static/images/west-ham.png HTTP/1.1" 200 -
+2025-01-31 11:01:55,563 - INFO: 127.0.0.1 - - [31/Jan/2025 11:01:55] "GET /static/images/sheffield-united.png HTTP/1.1" 200 -
+2025-01-31 11:01:55,563 - INFO: 127.0.0.1 - - [31/Jan/2025 11:01:55] "GET /static/images/nottingham-forest.png HTTP/1.1" 200 -
+2025-01-31 11:01:55,564 - INFO: 127.0.0.1 - - [31/Jan/2025 11:01:55] "GET /static/images/tottenham.png HTTP/1.1" 200 -
+2025-01-31 11:01:55,566 - INFO: 127.0.0.1 - - [31/Jan/2025 11:01:55] "GET /static/images/newcastle.png HTTP/1.1" 200 -
+2025-01-31 11:01:55,617 - INFO: 127.0.0.1 - - [31/Jan/2025 11:01:55] "[33mGET /api/feature-importance HTTP/1.1[0m" 404 -
+2025-01-31 11:01:55,618 - INFO: 127.0.0.1 - - [31/Jan/2025 11:01:55] "[33mGET /api/players HTTP/1.1[0m" 404 -
+2025-01-31 11:01:55,621 - INFO: 127.0.0.1 - - [31/Jan/2025 11:01:55] "[33mGET /get_teams_and_players HTTP/1.1[0m" 404 -
+2025-01-31 11:01:59,572 - INFO: 127.0.0.1 - - [31/Jan/2025 11:01:59] "[33mGET /get_team_details/Arsenal HTTP/1.1[0m" 404 -
+2025-01-31 11:02:03,572 - INFO: 127.0.0.1 - - [31/Jan/2025 11:02:03] "[33mGET /get_team_details/Manchester%20United HTTP/1.1[0m" 404 -
+2025-01-31 11:02:08,397 - INFO: 127.0.0.1 - - [31/Jan/2025 11:02:08] "GET /analytics_dashboard HTTP/1.1" 200 -
+2025-01-31 11:02:08,411 - INFO: 127.0.0.1 - - [31/Jan/2025 11:02:08] "GET /static/style.css HTTP/1.1" 200 -
+2025-01-31 11:02:08,414 - INFO: 127.0.0.1 - - [31/Jan/2025 11:02:08] "[36mGET /static/visualization_dashboard.js HTTP/1.1[0m" 304 -
+2025-01-31 11:02:37,003 - INFO: 127.0.0.1 - - [31/Jan/2025 11:02:37] "GET /analytics_dashboard HTTP/1.1" 200 -
+2025-01-31 11:02:37,019 - INFO: 127.0.0.1 - - [31/Jan/2025 11:02:37] "[36mGET /static/visualization_dashboard.js HTTP/1.1[0m" 304 -
+2025-01-31 11:02:37,020 - INFO: 127.0.0.1 - - [31/Jan/2025 11:02:37] "GET /static/style.css HTTP/1.1" 200 -
